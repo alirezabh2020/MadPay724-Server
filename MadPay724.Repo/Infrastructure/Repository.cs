@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repo.Infrastructure
 {
     public abstract class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {
@@ -73,8 +73,6 @@ namespace MadPay724.Data.Infrastructure
         #region Async
         public async Task InsertAsync(TEntity entity)
         {
-            if (entity == null)
-                throw new ArgumentException("There is no entity!");
             await _dbSet.AddAsync(entity);
         }
         public async Task<IEnumerable<TEntity>> GetAllAsync()
